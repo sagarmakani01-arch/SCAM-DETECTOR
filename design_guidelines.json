@@ -1,0 +1,143 @@
+{
+  "theme_and_archetype": {
+    "domain": "SaaS / Premium AI Decision Engine",
+    "theme": "Dark Mode Default, Light Mode Supported",
+    "archetype": "Archetype 5: Luxury (Premium, Cinematic, Mysterious)",
+    "description": "A high-end, futuristic, minimal AI decision engine. Uses deep matte blacks, heavy glassmorphism, and subtle glowing effects. The UI compares to luxury AI products. Banned colors like purple, teal, and cyan are completely avoided. Instead, relies on Deep Obsidian, Crisp Silver, Emerald Green (Trust), and Electric Amber (Risk)."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Cabinet Grotesk, sans-serif",
+      "weights": ["light", "bold", "black"],
+      "tracking": "tracking-tight to tracking-tighter for all sizes above 32px",
+      "h1": "text-5xl md:text-6xl tracking-tighter leading-none font-light",
+      "h2": "text-3xl md:text-4xl tracking-tight leading-none font-bold",
+      "h3": "text-xl md:text-2xl tracking-tight leading-snug font-bold"
+    },
+    "body": {
+      "font_family": "Satoshi, sans-serif",
+      "weights": ["regular", "medium"],
+      "base": "text-base leading-relaxed text-zinc-400 dark:text-zinc-400 text-zinc-600",
+      "small": "text-sm leading-normal text-zinc-500",
+      "overline": "text-xs tracking-[0.2em] uppercase font-bold text-zinc-500"
+    },
+    "rules": "Never use Inter or Roboto. Use high contrast white (dark mode) or black (light mode) for headings, muted grays for body. Never center headings by default; rely on deliberate alignment. Font sizes must follow fluid scaling without jumping to extreme extremes."
+  },
+  "color_palette": {
+    "dark_mode": {
+      "background": {
+        "primary": "#050505",
+        "secondary": "#0A0A0C",
+        "tertiary": "#12141A"
+      },
+      "glass": {
+        "base": "bg-[#12141A]/20 backdrop-blur-2xl",
+        "hover": "bg-[#12141A]/30 backdrop-blur-2xl",
+        "border": "border border-white/10 border-t-white/20"
+      },
+      "text": {
+        "primary": "#FFFFFF",
+        "secondary": "#A1A1AA",
+        "muted": "#71717A"
+      }
+    },
+    "light_mode": {
+      "background": {
+        "primary": "#FAFAFA",
+        "secondary": "#F4F4F5",
+        "tertiary": "#E4E4E7"
+      },
+      "glass": {
+        "base": "bg-white/70 backdrop-blur-2xl backdrop-saturate-150",
+        "hover": "bg-white/80 backdrop-blur-2xl",
+        "border": "border border-black/5"
+      },
+      "text": {
+        "primary": "#09090B",
+        "secondary": "#52525B",
+        "muted": "#A1A1AA"
+      }
+    },
+    "accents": {
+      "primary": "#0047FF",
+      "trust_green": "#10B981",
+      "risk_amber": "#F59E0B",
+      "value_diamond": "#E4E4E7",
+      "glow_shadow_dark": "shadow-[0_0_15px_rgba(255,255,255,0.05)]",
+      "glow_hover_dark": "shadow-[0_0_25px_rgba(255,255,255,0.1)]"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Generous spacing. Use p-8, p-12, p-16. Containers with borders must have internal padding (minimum p-6) to prevent text collision. Apply rounded corners heavily (rounded-2xl, rounded-3xl).",
+    "grid_system": {
+      "landing_page": "Bento Grid: grid-cols-1 md:grid-cols-12 gap-8. Mix spans (e.g., col-span-8 row-span-2 for hero, col-span-4 for supporting content). Leave negative space.",
+      "dashboard": "Control Room Grid: grid-cols-1 lg:grid-cols-4 gap-6. Tight density, every pixel utilized. Use h-full on children for alignment."
+    },
+    "alignment": "Mobile-first responsive. Optical alignment over geometrical. Left-align dense content and forms. Add extra right padding visually if a button has a left icon."
+  },
+  "visual_effects": {
+    "glassmorphism": "High blur (backdrop-blur-2xl). Low opacity background. Always include a 1px inner border to separate from background. For dark mode, border-t-white/20 provides a 3D lift.",
+    "glows": "Subtle, contextual glows. Avoid full-screen gradients. Use localized radial gradients behind cards or active states (glow radius 15-25px).",
+    "animations": "60 FPS transitions via framer-motion. Hover states must have a slight lift (-translate-y-1) and intensified glow. Entrance animations for dashboard lists should be staggered.",
+    "3d_elements": "Integrate Spline or React Three Fiber (R3F) for the premium 3D landing page hero. Abstract geometries or floating analytical nodes."
+  },
+  "ui_components": {
+    "buttons": "Shadcn highly customized. Primary buttons: solid Crisp White (text-black) in dark mode, or Electric Sapphire. Hover state must explicitly lighten bg and maintain contrast (hover:bg-zinc-200). Avoid purple/teal CTAs.",
+    "inputs_and_forms": "Shadcn based. Never use native inputs. Dark inputs with border-white/10. Focus state ring should be high contrast (focus:ring-white/30).",
+    "cards": "Glassmorphic panels. No solid flat gray backgrounds. Must use backdrop-filter and rounded-2xl.",
+    "navigation": "Sticky glass header (backdrop-blur-xl bg-background/60 z-50). Must have visible navigation links on desktop, not just a hamburger menu.",
+    "charts": "Shadcn charts or Recharts. Minimalist tooltips. Monochromatic or brand accent colors (Emerald for Trust, Amber for Risk)."
+  },
+  "media_and_assets": {
+    "rules": "Never use placeholder images. Images must have high-contrast overlays if text is placed on them (max bg-black/50 for dark mode, bg-white/40 for light mode).",
+    "images": [
+      {
+        "category": "Hero Background / Abstract 3D",
+        "url": "https://images.unsplash.com/photo-1652120268427-9ba66e870467",
+        "description": "Abstract dark wavy 3D pattern for premium background texture."
+      },
+      {
+        "category": "AI Processing / Depth Texture",
+        "url": "https://images.unsplash.com/photo-1517241034903-9a4c3ab12f00",
+        "description": "Black and white waves for feature sections."
+      },
+      {
+        "category": "Testimonial / User Profile 1",
+        "url": "https://images.pexels.com/photos/12396627/pexels-photo-12396627.jpeg",
+        "description": "Professional Asian woman in formal business attire on dark background."
+      },
+      {
+        "category": "Testimonial / User Profile 2",
+        "url": "https://images.pexels.com/photos/17685845/pexels-photo-17685845.jpeg",
+        "description": "Professional young man in suit on dark background."
+      },
+      {
+        "category": "Company Logo 1",
+        "url": "https://images.pexels.com/photos/5477692/pexels-photo-5477692.jpeg",
+        "description": "Minimalist ampersand logo."
+      },
+      {
+        "category": "Company Logo 2",
+        "url": "https://images.pexels.com/photos/13597064/pexels-photo-13597064.jpeg",
+        "description": "Apple logo with dramatic warm lighting."
+      }
+    ],
+    "icons": "lucide-react for standard system icons, @phosphor-icons/react for high-end duotone illustrative icons."
+  },
+  "testing_and_accessibility": {
+    "data_testid": "ALL interactive elements (buttons, inputs, links, tabs, cards) MUST include a data-testid attribute. Format: kebab-case, role-based (e.g., data-testid='login-submit-button', data-testid='hero-search-input').",
+    "contrast": "Ensure minimum 4.5:1 ratio for normal text. Explicitly set text color on hover states. Add subtle text-shadows when text is placed over gradients or glassmorphism.",
+    "motion": "Respect prefers-reduced-motion media query. Do not force animations on users who disable them."
+  },
+  "implementation_instructions_to_main_agent": [
+    "Import Cabinet Grotesk and Satoshi fonts via Fontshare CDN in index.css.",
+    "Ensure the application supports both dark and light mode, defaulting to dark mode. Use next-themes.",
+    "Build the hero section using a custom HTML/Tailwind layout combined with framer-motion for smooth entrance animations.",
+    "For the Universal Search Box, use a highly customized Shadcn Command or Input component with glassmorphism and an inner glow.",
+    "Dashboard should be built using Shadcn components (Cards, Tables, Tabs) heavily customized to match the glassmorphic, rounded-corner aesthetic.",
+    "Do not use simple HTML <select> or <input type='date'>; strictly use Shadcn counterparts.",
+    "Utilize framer-motion to create 60 FPS page transitions and hover interactions.",
+    "Avoid the default Vercel-look. Inject the specified Archetype 5 aesthetic aggressively.",
+    "Do NOT use placeholder images. Bind the image URLs from the media_and_assets section."
+  ]
+}
