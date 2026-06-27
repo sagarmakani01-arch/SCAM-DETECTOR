@@ -36,11 +36,11 @@ const TESTIMONIALS = [
 ];
 
 const TIERS = [
-  { name: "Free", price: "$0", desc: "For curious decision-makers", features: ["10 AI analyses / month", "Basic Trust + Risk scores", "Search history", "Community reviews"] },
-  { name: "Pro", price: "$19", highlight: true, desc: "For power buyers & researchers",
-    features: ["Unlimited AI analyses", "Deep multi-pass reasoning", "URL + QR safety scans", "Export reports as PDF", "Priority chat assistant"] },
-  { name: "Business", price: "$79", desc: "Teams, agencies, procurement",
-    features: ["Everything in Pro", "API access", "Browser extension", "Team workspaces", "Early feature access"] },
+  { name: "Free", price: "₹0", desc: "For curious decision-makers", features: ["10 AI analyses / month", "Basic Trust + Risk scores", "Search history", "Community reviews"] },
+  { name: "Pro", price: "₹399", highlight: true, desc: "For power buyers & researchers",
+    features: ["Unlimited AI analyses", "Deep multi-pass reasoning", "URL + UPI + QR safety scans", "WhatsApp instant share", "Priority chat assistant"] },
+  { name: "Business", price: "₹1,499", desc: "Teams, agencies, procurement",
+    features: ["Everything in Pro", "API access", "Browser extension", "Team workspaces", "Hindi + regional language reports"] },
 ];
 
 const FAQS = [
@@ -132,6 +132,46 @@ export default function Landing() {
               ))}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* WHY INDIA */}
+      <section className="py-24 border-y border-white/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-emerald-400 mb-4">Built for India first</div>
+              <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tighter leading-tight">
+                ₹10,319 crore lost to digital fraud in 2024 alone.
+              </h2>
+              <p className="mt-5 text-zinc-400 leading-relaxed max-w-lg">
+                Indians lose more to UPI scams, fake job consultancies, WhatsApp investment groups and EdTech fraud than any other country. Nexar is built to stop that — fluent in Indian scam patterns, priced for India, and verdict-fast enough to share before you Send.
+              </p>
+              <div className="mt-8 grid grid-cols-2 gap-4 max-w-md">
+                <div className="glass rounded-2xl p-5">
+                  <div className="font-display text-3xl font-bold">3.8L+</div>
+                  <div className="text-xs text-zinc-500 mt-1 uppercase tracking-widest">UPI complaints in 2024</div>
+                </div>
+                <div className="glass rounded-2xl p-5">
+                  <div className="font-display text-3xl font-bold">67%</div>
+                  <div className="text-xs text-zinc-500 mt-1 uppercase tracking-widest">Job offers we flag as fake</div>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { t: "UPI Request Scams", d: "Pasted UPI IDs decoded for risk before you pay." },
+                { t: "Fake Recruiters", d: "Ghost consultancies & fee-asking 'HR' detected." },
+                { t: "Telegram Trading", d: "Pump-and-dump groups identified in seconds." },
+                { t: "EdTech Frauds", d: "Course refund traps and fake placement claims." },
+              ].map((c) => (
+                <div key={c.t} className="glass rounded-2xl p-5">
+                  <div className="font-medium text-sm">{c.t}</div>
+                  <div className="text-xs text-zinc-500 mt-2 leading-relaxed">{c.d}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

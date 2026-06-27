@@ -6,11 +6,13 @@ import { toast } from "sonner";
 import { useAuth } from "@/context/AuthContext";
 
 const SAMPLES = [
-  "shein.com",
-  "Tesla Model 3",
-  "Remote senior dev job at unknown company $200k",
+  "WhatsApp group offering 50% monthly crypto returns",
+  "Fake recruiter from 'Amazon HR' asking for ₹5,000 fee",
+  "shein.in",
+  "EdTech course promising 100% placement",
+  "Telegram trading channel with screenshots",
+  "Fake government PMKVY scheme website",
   "MetaMask wallet legitimacy",
-  "Coursera Google IT certificate",
 ];
 
 export default function SearchBox({ size = "lg" }) {
@@ -43,7 +45,7 @@ export default function SearchBox({ size = "lg" }) {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
-          placeholder="Paste a URL, product, company, job, app, course…"
+          placeholder="Paste a URL, UPI ID, WhatsApp group, job offer, app, course…"
           className={`flex-1 bg-transparent outline-none ${size === "lg" ? "h-14 text-base sm:text-lg" : "h-11 text-sm"} placeholder:text-zinc-600 text-white`}
         />
         <button

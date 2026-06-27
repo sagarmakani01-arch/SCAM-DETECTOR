@@ -1,0 +1,23 @@
+{
+  "summary": "Iteration 2 India-localization enhancements verified end-to-end. Backend seed populates trending/scams (>=4 India titles) and trending/products (>=2 incl. iPhone 15 Pro & DJI Mini 4 Pro). /api/seed-demo is idempotent (returns seeded:false on subsequent calls). Auth (login/me), /api/reports, /api/stats all healthy. Frontend landing shows 'Built for India first' section with ₹10,319 crore stat and UPI/Recruiter/Telegram/EdTech cards; pricing in INR (₹0/₹399/₹1,499) with no USD residue; hero placeholder mentions UPI ID/WhatsApp group; India-themed sample chips render. Report page (public) shows whatsapp-share-btn and copy-link-btn alongside Save. Dashboard after login shows seeded India scams + products.",
+  "tested_scope": ["backend", "frontend", "auth", "integration"],
+  "passed": [
+    "GET /api/trending/scams returns 5 items incl. 'Crypto Gold', 'Amazon India HR', 'Bank Nifty', 'Coding Bootcamp'",
+    "GET /api/trending/products returns 4 items incl. 'iPhone 15 Pro' and 'DJI Mini 4 Pro'",
+    "POST /api/seed-demo idempotent (seeded:false, count:6 on repeat calls)",
+    "POST /api/auth/login returns token; GET /api/auth/me returns test1@nexar.io",
+    "GET /api/reports returns user reports list (2)",
+    "GET /api/stats returns counts",
+    "Landing renders 'Built for India first' + ₹10,319 stat + UPI/Recruiters/Telegram/EdTech cards",
+    "Pricing tiers show ₹0 / ₹399 / ₹1,499 (no USD)",
+    "Hero placeholder: 'Paste a URL, UPI ID, WhatsApp group, job offer, app, course...'",
+    "Hero India sample chips visible (WhatsApp crypto, Amazon HR, EdTech, Telegram, PMKVY)",
+    "Report page (seeded /report/{id}) shows data-testid=whatsapp-share-btn and data-testid=copy-link-btn",
+    "Login redirects to /dashboard; dashboard shows seeded India scams + products"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}

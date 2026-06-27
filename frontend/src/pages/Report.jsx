@@ -79,10 +79,19 @@ export default function Report() {
                   className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-white/15 hover:bg-white/5 text-sm">
                   <Bookmark className={`h-4 w-4 ${bookmarked ? "fill-white" : ""}`} /> {bookmarked ? "Saved" : "Save"}
                 </button>
-                <a href={`mailto:?subject=Nexar verdict on ${encodeURIComponent(d.title)}&body=${encodeURIComponent(d.verdict_line)}`}
-                  className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-white/15 hover:bg-white/5 text-sm" data-testid="share-btn">
-                  <ExternalLink className="h-4 w-4" /> Share
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(`Nexar verdict on "${d.title}":\n\n${d.verdict_line}\n\nTrust ${d.trust_score} · Risk ${d.risk_score} · Value ${d.value_score}\n\nFull report: ${window.location.href}`)}`}
+                  target="_blank" rel="noreferrer"
+                  data-testid="whatsapp-share-btn"
+                  className="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-emerald-500/15 border border-emerald-400/30 hover:bg-emerald-500/25 text-emerald-300 text-sm">
+                  <ExternalLink className="h-4 w-4" /> Share on WhatsApp
                 </a>
+                <button
+                  onClick={() => { navigator.clipboard.writeText(window.location.href); toast.success("Report link copied"); }}
+                  data-testid="copy-link-btn"
+                  className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-white/15 hover:bg-white/5 text-sm">
+                  <ExternalLink className="h-4 w-4" /> Copy link
+                </button>
               </div>
             </div>
 
