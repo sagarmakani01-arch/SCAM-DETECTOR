@@ -1,0 +1,48 @@
+{
+  "summary": "First-iteration smoke testing of Nexar (FastAPI + React + Claude Sonnet 4.5). All 14 backend endpoints pass (health, signup, login, /auth/me, analyze with Claude in ~42s, GET /reports, GET /reports/{id}, bookmark toggle, trending scams/products, stats, chat, community reviews POST/GET, community scams POST). Frontend landing, login -> dashboard, report detail page, and chat drawer all render correctly with full AI integration.",
+  "tested_scope": ["backend", "frontend", "auth", "integration"],
+  "passed": [
+    "GET /api/ -> 200 {status: live}",
+    "POST /api/auth/login (test1@nexar.io) -> 200 with JWT",
+    "POST /api/auth/signup new user -> 200 with token",
+    "GET /api/auth/me (Bearer) -> 200 returns user object",
+    "POST /api/analyze (auth) -> 200 in ~42s. trust=92 risk=15 value=78 recommendation=buy, 9 pros / 7 cons / 5 alternatives, full data keys present",
+    "GET /api/reports (auth) -> 200 returns array linked to user",
+    "GET /api/reports/{id} -> 200 with correct data",
+    "POST /api/reports/{id}/bookmark -> 200 {bookmarked: true}",
+    "GET /api/trending/scams -> 200 array",
+    "GET /api/trending/products -> 200 array (1 item)",
+    "GET /api/stats -> 200 counters",
+    "POST /api/chat -> 200 ~11s, session_id + 1101-char reply",
+    "POST /api/community/reviews -> 200 with id",
+    "GET /api/community/reviews/{report_id} -> 200 array",
+    "POST /api/community/scams -> 200 with id",
+    "Frontend / loads (hero search, login/signup nav, features visible)",
+    "Login flow: /login -> fill -> submit -> /dashboard (auto-redirect)",
+    "Dashboard renders: 'Welcome back, Test.', recent analyses (AirPods Trust 92 BUY, Tesla Trust 98 BUY), saved reports, trending sections, plan=Free",
+    "Report page renders: Trust 92/100, Risk 15/100, Value 78/100, BUY badge, pros & cons lists, Saved/Share buttons, recommendation tagline",
+    "Chat drawer: opens, sends message, Claude reply rendered in chat bubbles (11s)"
+  ],
+  "failed": [
+    {
+      "area": "frontend / chat-open-btn",
+      "issue": "Emergent 'Made with Emergent' badge (id=emergent-badge) overlays the floating chat button at bottom-right and intercepts pointer events on standard Playwright clicks. JS .click() / force=true via evaluate works fine; real users on small screens may also experience this overlap.",
+      "evidence": "Playwright: '<a id=\"emergent-badge\"> intercepts pointer events' on [data-testid=chat-open-btn]. Worked after page.evaluate(...).click().",
+      "priority": "LOW"
+    },
+    {
+      "area": "frontend / document.title",
+      "issue": "Page <title> still shows 'Emergent | Fullstack App' instead of Nexar branding.",
+      "evidence": "await page.title() returned 'Emergent | Fullstack App'.",
+      "priority": "LOW"
+    }
+  ],
+  "action_items": [
+    "Optional: bump chat-open-btn bottom offset (e.g., bottom-20) or z-index above the Emergent badge so it never overlaps.",
+    "Optional: update <title> in /app/frontend/public/index.html to 'Nexar - AI Decision Engine'."
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100% (core flows); 1 minor overlay issue"},
+  "retest_needed": false,
+  "full_testing_deferred": true,
+  "test_credentials": "Used /app/memory/test_credentials.md - test1@nexar.io / password123 verified working."
+}
