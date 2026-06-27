@@ -28,3 +28,13 @@ Build a premium, futuristic, dark-mode AI web app (Nexar) that vets products, we
 - P0: PDF export, full admin panel UI, more thorough scam pattern DB, mocked browser extension page
 - P1: Light mode toggle, screenshot upload analysis, QR code scanner, email alerts
 - P2: Browser extension, Stripe checkout for Pro/Business tiers, mobile app shell, leaderboards
+
+## Iteration 2 — 2026-06-27 — India-first positioning
+- Hero search placeholder now mentions UPI ID / WhatsApp group
+- 7 India-themed quick-pick sample chips (WhatsApp crypto group, fake Amazon HR job, EdTech bootcamp, Telegram tips, PMKVY website, MetaMask)
+- "Built for India first" landing section with ₹10,319 crore stat + 4 category cards (UPI/Recruiters/Telegram/EdTech)
+- INR pricing (₹0 / ₹399 / ₹1,499) — replaces USD
+- WhatsApp share button + Copy link button on every report page (wa.me prefilled with verdict + scores + URL)
+- Backend startup auto-seeds 6 demo reports (4 scams + 2 products, all India-localized) so dashboard + trending feeds look alive
+- Idempotent /api/seed-demo endpoint
+- 100% pass on iteration_2.json testing
