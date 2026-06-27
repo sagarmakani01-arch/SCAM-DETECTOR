@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Nexar — AI Decision Engine",
+  "version": "0.1.0",
+  "description": "Get instant Trust, Risk and Value scores for any URL, product or page. Powered by Claude AI.",
+  "permissions": ["activeTab", "contextMenus", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Nexar — Scan this page",
+    "default_popup": "popup.html"
+  },
+  "background": { "service_worker": "background.js" },
+  "icons": { "128": "icon-128.png" }
+}

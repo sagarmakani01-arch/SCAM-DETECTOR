@@ -21,6 +21,7 @@ export default function Nav() {
           <nav className="hidden md:flex items-center gap-7 text-sm text-zinc-400">
             <a href="/#features" className="hover:text-white transition" data-testid="nav-features">Features</a>
             <a href="/#categories" className="hover:text-white transition" data-testid="nav-categories">Categories</a>
+            <Link to="/extension" className="hover:text-white transition" data-testid="nav-extension">Extension</Link>
             <a href="/#pricing" className="hover:text-white transition" data-testid="nav-pricing">Pricing</a>
             <a href="/#faq" className="hover:text-white transition" data-testid="nav-faq">FAQ</a>
           </nav>

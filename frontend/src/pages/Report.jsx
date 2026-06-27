@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { toPng } from "html-to-image";
 import {
   Check, X, AlertTriangle, ShieldCheck, Sparkles, ExternalLink, Bookmark, MessagesSquare,
-  TrendingUp, DollarSign, AlertOctagon, Lightbulb, Lock, ArrowLeft,
+  TrendingUp, DollarSign, AlertOctagon, Lightbulb, Lock, ArrowLeft, Languages, Download,
 } from "lucide-react";
 import Nav from "@/components/Nav";
 import ChatDrawer from "@/components/ChatDrawer";
@@ -26,6 +27,36 @@ export default function Report() {
   const [bookmarked, setBookmarked] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [reviewForm, setReviewForm] = useState({ title: "", body: "", rating: 5 });
+  const [hindi, setHindi] = useState(null); // {verdict_line, summary} or null
+  const [translating, setTranslating] = useState(false);
+  const cardRef = useRef(null);
+
+  const toggleHindi = async () => {
+    if (hindi) { setHindi(null); return; }
+    setTranslating(true);
+    try {
+      const verdict = await nexar.translate(d.verdict_line, "hi");
+      const summary = await nexar.translate(d.summary, "hi");
+      setHindi({ verdict_line: verdict.translated, summary: summary.translated });
+      toast.success("हिंदी में अनुवादित");
+    } catch (e) {
+      toast.error("Translation failed");
+    } finally { setTranslating(false); }
+  };
+
+  const downloadCard = async () => {
+    if (!cardRef.current) return;
+    try {
+      const dataUrl = await toPng(cardRef.current, { cacheBust: true, pixelRatio: 2, backgroundColor: "#050505" });
+      const link = document.createElement("a");
+      link.download = `nexar-verdict-${id.slice(0, 8)}.png`;
+      link.href = dataUrl;
+      link.click();
+      toast.success("Verdict card downloaded — share on X / Instagram");
+    } catch (e) {
+      toast.error("Card export failed");
+    }
+  };
 
   useEffect(() => {
     nexar.report(id).then((r) => { setReport(r); setBookmarked(r.bookmarked); }).catch(() => toast.error("Report not found"));

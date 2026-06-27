@@ -59,6 +59,10 @@ class ChatReq(BaseModel):
     message: str
     session_id: Optional[str] = None
 
+class TranslateReq(BaseModel):
+    text: str
+    target_lang: str = "hi"
+
 class ReviewReq(BaseModel):
     report_id: str
     rating: int
@@ -280,6 +284,18 @@ async def chat_endpoint(body: ChatReq, user=Depends(get_user)):
         "message": body.message, "response": str(resp), "created_at": now_iso(),
     })
     return {"session_id": session_id, "reply": str(resp)}
+
+
+@api.post("/translate")
+async def translate(body: TranslateReq):
+    lang_name = {"hi": "Hindi (Devanagari script)", "ta": "Tamil", "te": "Telugu", "bn": "Bengali", "mr": "Marathi"}.get(body.target_lang, "Hindi")
+    chat = LlmChat(
+        api_key=EMERGENT_LLM_KEY,
+        session_id=f"translate-{uuid.uuid4()}",
+        system_message=f"You are an expert translator. Translate the given text into {lang_name} naturally and preserve all meaning, names, numbers, and tone. Return ONLY the translated text — no preface, no quotes, no commentary.",
+    ).with_model("anthropic", "claude-sonnet-4-5-20250929")
+    resp = await chat.send_message(UserMessage(text=body.text))
+    return {"translated": str(resp).strip()}
 
 
 # ============ Community ============

@@ -7,6 +7,8 @@ import Landing from "@/pages/Landing";
 import Auth from "@/pages/Auth";
 import Dashboard from "@/pages/Dashboard";
 import Report from "@/pages/Report";
+import Extension from "@/pages/Extension";
+import Admin from "@/pages/Admin";
 
 function Protected({ children }) {
   const { user, loading } = useAuth();
@@ -26,6 +28,8 @@ export default function App() {
             <Route path="/signup" element={<Auth mode="signup" />} />
             <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
             <Route path="/report/:id" element={<Report />} />
+            <Route path="/extension" element={<Extension />} />
+            <Route path="/admin" element={<Protected><Admin /></Protected>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
