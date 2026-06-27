@@ -92,7 +92,7 @@ export default function Report() {
           <ArrowLeft className="h-3 w-3 mr-1" /> Back to dashboard
         </Link>
 
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mt-6 glass rounded-3xl p-8 sm:p-10">
+        <motion.div ref={cardRef} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mt-6 glass rounded-3xl p-8 sm:p-10">
           <div className="flex flex-col lg:flex-row gap-8 justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3 flex-wrap">
@@ -102,13 +102,21 @@ export default function Report() {
                 </span>
               </div>
               <h1 className="font-display text-4xl sm:text-5xl font-bold tracking-tighter">{d.title}</h1>
-              <p className="mt-4 text-zinc-400 leading-relaxed max-w-2xl">{d.summary}</p>
-              <p className={`mt-5 text-lg ${vs.c}`}>{d.verdict_line}</p>
+              <p className="mt-4 text-zinc-400 leading-relaxed max-w-2xl">{hindi ? hindi.summary : d.summary}</p>
+              <p className={`mt-5 text-lg ${vs.c}`}>{hindi ? hindi.verdict_line : d.verdict_line}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 <button onClick={toggleBookmark} data-testid="bookmark-btn"
                   className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-white/15 hover:bg-white/5 text-sm">
                   <Bookmark className={`h-4 w-4 ${bookmarked ? "fill-white" : ""}`} /> {bookmarked ? "Saved" : "Save"}
+                </button>
+                <button onClick={toggleHindi} disabled={translating} data-testid="hindi-toggle-btn"
+                  className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-white/15 hover:bg-white/5 text-sm disabled:opacity-60">
+                  <Languages className="h-4 w-4" /> {translating ? "Translating…" : hindi ? "English" : "हिंदी में पढ़ें"}
+                </button>
+                <button onClick={downloadCard} data-testid="download-card-btn"
+                  className="inline-flex items-center gap-2 h-10 px-4 rounded-xl border border-white/15 hover:bg-white/5 text-sm">
+                  <Download className="h-4 w-4" /> Save as image
                 </button>
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(`Nexar verdict on "${d.title}":\n\n${d.verdict_line}\n\nTrust ${d.trust_score} · Risk ${d.risk_score} · Value ${d.value_score}\n\nFull report: ${window.location.href}`)}`}
